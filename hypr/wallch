@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# This script will randomly pick a JPEG wallpaper from a specified directory
+# and move it to a designated wallpaper location every 10 minutes
+
+if [[ $# -lt 1 ]] || [[ ! -d $1 ]]; then
+	echo "Usage: $0 <dir containing images>"
+	exit 1
+fi
+
+# Directory where the wallpaper will be stored
+WALLPAPER_DIR=~/.current_wallpaper
+mkdir -p "$WALLPAPER_DIR"
+
+# This controls (in seconds) when to switch to the next image
+INTERVAL=600
+
+while true; do
+	find "$1" -type f -iname '*.jpg' \
+		| while read -r img; do
+			echo "$((RANDOM % 1000)):$img"
+		done \
+		| sort -n | cut -d':' -f2- \
+		| while read -r img; do
+			cp "$img" "$WALLPAPER_DIR/current.jpg"
+			swww img "$WALLPAPER_DIR/current.jpg"
+			sleep $INTERVAL
+		done
+done
