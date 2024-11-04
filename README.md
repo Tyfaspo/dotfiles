@@ -11,14 +11,14 @@ gl if you are willing to use my configs ;P
 ## Software:
 - OS: Arch
 - Kernel: linux
-- DE/WM: KDE/Hyprland
+- WM: Hyprland
 - Shell: zsh with oh-my-zsh
-- Terminal: Konsole/Kitty
+- Terminal: Kitty
 - AUR Helper: yay
 - fetch script: fastfetch
 - Media player: GWEN/MPV
 - Messengers: Vesktop/Telegram
-- Text editors: nano/Code - OSS
+- Text editors: nvim
 
 
 ## Checklist
@@ -28,6 +28,6 @@ gl if you are willing to use my configs ;P
 -[] Modularize hyprland.conf
 -[] Docs
 -[] install.sh script 
--[] GTK theming
+-[x] GTK theming
 -[] Move from Waybar to AGS
--[] Gruvbox theme for every applications
+-[x] Gruvbox theme for every applications
