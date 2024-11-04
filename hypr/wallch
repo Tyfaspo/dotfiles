@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [[ $# -lt 1 ]] || [[ ! -d $1 ]]; then
+	echo "Usage: $0 <dir containing images>"
+	exit 1
+fi
+
+# Directory where the wallpaper will be stored
+WALLPAPER_DIR=~/.current_wallpaper
+mkdir -p "$WALLPAPER_DIR"
+
+# This controls (in seconds) when to switch to the next image
+INTERVAL=600
+
+while true; do
+	find "$1" -type f -iname '*.png' \
+		| while read -r img; do
+			echo "$((RANDOM % 1000)):$img"
+		done \
+		| sort -n | cut -d':' -f2- \
+		| while read -r img; do
+			cp "$img" "$WALLPAPER_DIR/current.png"
+			cp "$img" "/home/tyfaspo/.mozilla/firefox/ivuilrut.default-release/chrome/wallpaper.png" #get your mozilla profile folder
+			swww img "$WALLPAPER_DIR/current.png"
+			sleep $INTERVAL
+		done
+done
