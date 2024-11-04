@@ -3,11 +3,10 @@
 /* ---- Configuration ---- */
 
 configuration {
-	modi:                       "drun,run,filebrowser,window,calc";
+	modi:                       "drun,filebrowser,window,calc";
     show-icons:                 true;
     display-calc:               "Calc";
     display-drun:               "Apps";
-    display-run:                "Run";
     display-filebrowser:        "Files";
     display-window:             "Windows";
 	drun-display-format:        "{name}";
@@ -68,7 +67,7 @@ inputbar {
     border-radius:               25px;
     orientation:                 horizontal;
     children:                    ["entry", "dummy", "mode-switcher" ];
-    background-image:            url("~/.current_wallpaper/current.jpg", width);
+    background-image:            url("~/.current_wallpaper/current.png", width);
 }
 
 /* ---- Entry input ---- */
