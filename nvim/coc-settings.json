@@ -1,0 +1,6 @@
+{
+  "diagnostic.enable": true,
+  "coc.preferences.formatOnSave": true,
+  "coc.preferences.formatOnType": false,
+  "signature.enable": true
+}
