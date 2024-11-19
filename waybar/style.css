@@ -2,7 +2,7 @@
   border: none;
   font-family: Hack Nerd Font;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   min-height: 0;
 }
 
@@ -27,8 +27,8 @@ tooltip {
   background: none;
   box-shadow: inherit;
   text-shadow: inherit;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 0px;
   padding-right: 0px;
 }
