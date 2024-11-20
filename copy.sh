@@ -20,9 +20,10 @@ for FOLDER in "${FOLDERS[@]}"; do
   fi
 done
 
-# since i use .vimrc
-if [ -f "/home/$USER/.vimrc" ]; then 
-  cp "/home/$USER/.vimrc" "./"
+if [ ! -d "/home/$USER/.local/share/nautilus/scripts" ]; then
+	mkdir -p "home/$USER/.local/share/nautilus/scripts"
 fi
+
+cp -r "/home/$USER/.local/share/nautilus/scripts" "nautilus/scripts" 
 
 echo "DONE"
