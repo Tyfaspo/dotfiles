@@ -11,7 +11,7 @@ gl if you are willing to use my configs ;P
 ## Software:
 - OS: Arch
 - Kernel: linux
-- WM: Hyprland
+- WM: Hyprland, Qtile
 - Shell: zsh with oh-my-zsh
 - Terminal: Kitty
 - AUR Helper: yay
@@ -19,7 +19,7 @@ gl if you are willing to use my configs ;P
 - Media player: GWEN/MPV
 - Messengers: Vesktop/Telegram
 - Text editors: nvim
-
+- Qtile specific: arandr, picom
 
 ## Checklist
 -[x] Dots themselves
@@ -31,3 +31,5 @@ gl if you are willing to use my configs ;P
 -[x] GTK theming
 -[] Move from Waybar to AGS
 -[x] Gruvbox theme for every applications
+
+Install: font-awesome, ttf-hack-nerd, breeze-cursors

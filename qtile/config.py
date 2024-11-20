@@ -24,13 +24,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, qtile, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile import bar, layout, qtile, widget, hook
+from libqtile.config import Click, Drag, Group, hook, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = "kitty"
+file_manager = "nautilus"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -67,15 +68,15 @@ keys = [
     Key([mod], "q", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "Return", lazy.spawn("rofi -modi drun -show drun"), desc="Launch terminal"),
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], "e", lazy.spawn(file_manager), desc="Launch file manager"),
     Key(
         [mod],
         "f",
         lazy.window.toggle_fullscreen(),
         desc="Toggle fullscreen on the focused window",
     ),
-    Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    Key([mod], "v", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "m", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
@@ -145,41 +146,258 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+
 screens = [
+
     Screen(
-	wallpaper='~/.current_wallpaper/current.png',
-        wallpaper_mode='stretch',
-	bottom=bar.Bar(
+        top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
+                widget.Spacer(length=15,
+                    background='#282738',
                 ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/launch_Icon.png',
+                    margin=2,
+                    background='#282738',
+                    # mouse_callbacks={"Button1": power},
+                ),
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/6.png',
+                ),
+
+                widget.GroupBox(
+                    font="JetBrainsMono Nerd Font",
+                    fontsize=24,
+                    borderwidth=3,
+                    highlight_method='block',
+                    active='#CAA9E0',
+                    block_highlight_text_color="#91B1F0",
+                    highlight_color='#353446',
+                    inactive='#282738',
+                    foreground='#4B427E',
+                    background='#353446',
+                    this_current_screen_border='#353446',
+                    this_screen_border='#353446',
+                    other_current_screen_border='#353446',
+                    other_screen_border='#353446',
+                    urgent_border='#353446',
+                    rounded=True,
+                    disable_drag=True,
+                ),
+
+                widget.Spacer(
+                    length=8,
+                    background='#353446',
+                ),
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/1.png',
+                ),
+
+
+                widget.CurrentLayoutIcon(
+                    custom_icon_paths=["~/.config/qtile/Assets/layout"],
+                    background='#353446',
+                    scale=0.50,
+                ),
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/5.png',
+                ),
+
+                widget.TextBox(
+                    text=" ",
+                    font="Font Awesome 6 Free Solid",
+                    fontsize=13,
+                    background='#282738',
+                    foreground='#CAA9E0',
+                    # mouse_callbacks={"Button1": search},
+                ),
+
+                widget.TextBox(
+                    fmt='Search',
+                    background='#282738',
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=13,
+                    foreground='#CAA9E0',
+                    # mouse_callbacks={"Button1": search},
+                ),
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/4.png',
+                ),
+
+                widget.WindowName(
+                    background='#353446',
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=13,
+                    empty_group_string="Desktop",
+                    max_chars=130,
+                    foreground='#CAA9E0',
+                ),
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/3.png',
+                ),
+
+                widget.Systray(
+                    background='#282738',
+                    fontsize=2,
+                ),
+
+                widget.TextBox(
+                    text=' ',
+                    background='#282738',
+                ),
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/6.png',
+                    background='#353446',
+                ),
+
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 6 Free Solid",
+                    fontsize=13,
+                    background='#353446',
+                    foreground='#CAA9E0',
+                ),
+
+                widget.Memory(
+                    background='#353446',
+                    format='{MemUsed: .0f}{mm}',
+                    foreground='#CAA9E0',
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=13,
+                    update_interval=5,
+                ),
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/2.png',
+                ),
+
+                widget.Spacer(
+                    length=8,
+                    background='#353446',
+                ),
+
+                widget.TextBox(
+                    text=" ",
+                    font="Font Awesome 6 Free Solid",
+                    fontsize=13,
+                    background='#353446',
+                    foreground='#CAA9E0',
+                ),
+
+                widget.Battery(
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=13,
+                    background='#353446',
+                    foreground='#CAA9E0',
+                    format='{percent:2.0%}',
+                ),
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/2.png',
+                ),
+
+                widget.Spacer(
+                    length=8,
+                    background='#353446',
+                ),
+
+                widget.TextBox(
+                    text=" ",
+                    font="Font Awesome 6 Free Solid",
+                    fontsize=13,
+                    background='#353446',
+                    foreground='#CAA9E0',
+                ),
+
+                widget.Volume(
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=13,
+                    background='#353446',
+                    foreground='#CAA9E0',
+                ),
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/5.png',
+                    background='#353446',
+                ),
+
+                widget.TextBox(
+                    text=" ",
+                    font="Font Awesome 6 Free Solid",
+                    fontsize=13,
+                    background='#282738',
+                    foreground='#CAA9E0',
+                ),
+
+                widget.Clock(
+                    format='%I:%M %p',
+                    background='#282738',
+                    foreground='#CAA9E0',
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=13,
+                ),
+
+                widget.Spacer(
+                    length=18,
+                    background='#282738',
+                ),
+
             ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            30,
+            border_color='#282738',
+            border_width=[0,0,0,0],
+            margin=[15,60,6,60],
+
         ),
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
     ),
-    Screen(wallpaper='~/.current_wallpaper/current.png', wallpaper_mode='stretch')
 ]
+# screens = [
+#     Screen(
+# 	    wallpaper='~/.current_wallpaper/current.png',
+#         wallpaper_mode='stretch',
+# 	    top=bar.Bar(
+#             [
+#                 widget.CurrentLayout(),
+#                 widget.GroupBox(),
+#                 widget.Prompt(),
+#                 widget.WindowName(),
+#                 widget.Chord(
+#                     chords_colors={
+#                         "launch": ("#ff0000", "#ffffff"),
+#                     },
+#                     name_transform=lambda name: name.upper(),
+#                 ),
+#                 widget.TextBox("default config", name="default"),
+#                 widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+#                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+#                 # widget.StatusNotifier(),
+#                 widget.Systray(),
+#                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+#                 widget.QuickExit(),
+#             ],
+#             24,
+#             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+#             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+#         ),
+#         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
+#         # By default we handle these events delayed to already improve performance, however your system might still be struggling
+#         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
+#         # x11_drag_polling_rate = 60,
+#     ),
+#     Screen(wallpaper='~/.current_wallpaper/current.png', wallpaper_mode='stretch')
+# ]
+
+@hook.subscribe.startup_once
+def _():
+    run("/home/tyfaspo/.config/qtile/scripts/autostart.sh")
+
 
 # Drag floating layouts.
 mouse = [
