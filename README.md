@@ -20,6 +20,7 @@ gl if you are willing to use my configs ;P
 - Messengers: Vesktop/Telegram
 - Text editors: nvim
 - Qtile specific: arandr, picom
+- Lock screen: Hyprlock
 
 ## Checklist
 -[x] Dots themselves
@@ -32,4 +33,4 @@ gl if you are willing to use my configs ;P
 -[] Move from Waybar to AGS
 -[x] Gruvbox theme for every applications
 
-Install: font-awesome, ttf-hack-nerd, breeze-cursors
+Install: font-awesome, ttf-hack-nerd, (Breeze Cursor)[https://github.com/ful1e5/BreezeX_Cursor?tab=readme-ov-file], (grimblast)[https://github.com/hyprwm/contrib/tree/main/grimblast], swappy
