@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Check if an input file is provided
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <input_video>"
+    notify-send "FFmpeg Compression" "Usage: $0 <input_video>"
+    exit 1
+fi
+
+INPUT_FILE="$1"
+OUTPUT_FILE="${INPUT_FILE%.*}_compressed.mp4"
+
+# Start compression
+notify-send "FFmpeg Compression" "Compression started for: $INPUT_FILE"
+
+ffmpeg -i "$INPUT_FILE" \
+       -vf "scale=1280:-2" \
+       -preset veryslow \
+       -crf 30 \
+       -maxrate 1000k \
+       -bufsize 2000k \
+       -r 24 \
+       -c:a aac -b:a 96k \
+       -movflags +faststart \
+       "$OUTPUT_FILE"
+
+# Check if the command succeeded
+if [ $? -eq 0 ]; then
+    notify-send "FFmpeg Compression" "Compression completed successfully! Saved as $OUTPUT_FILE"
+else
+    notify-send "FFmpeg Compression" "Compression failed for: $INPUT_FILE"
+fi

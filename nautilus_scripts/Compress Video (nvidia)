@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Check if an input file is provided
+if [ "$#" -ne 1 ]; then
+    notify-send "FFmpeg Compression" "Usage: $0 <input_video>"
+    exit 1
+fi
+
+INPUT_FILE="$1"
+OUTPUT_FILE="${INPUT_FILE%.*}_compressed.mp4"
+
+# Start compression notification
+notify-send "FFmpeg Compression" "Compression started for: $INPUT_FILE"
+
+# Run FFmpeg and capture errors
+ERROR_LOG=$(mktemp)
+ffmpeg -i "$INPUT_FILE" \
+       -c:v h264_nvenc \
+       -preset slow \
+       -b:v 2M \
+       -vf "scale=1280:-2" \
+       -r 24 \
+       -c:a aac -b:a 96k \
+       -movflags +faststart \
+       "$OUTPUT_FILE" 2> "$ERROR_LOG"
+
+# Check if FFmpeg succeeded
+if [ $? -eq 0 ]; then
+    notify-send "FFmpeg Compression" "Compression completed successfully! Saved as $OUTPUT_FILE"
+else
+    ERROR_MESSAGE=$(tail -n 5 "$ERROR_LOG")
+    notify-send "FFmpeg Compression" "Compression failed! Error: $ERROR_MESSAGE"
+fi
+
+# Clean up
+rm -f "$ERROR_LOG"
+
