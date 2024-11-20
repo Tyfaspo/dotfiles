@@ -8,7 +8,7 @@ fi
 
 CONFIG="/home/$USER/.config"
 
-FOLDERS=("kitty" "dunst" "hypr" "fastfetch" "nvim" "rofi" "waybar" "thefuck" "wlogout")
+FOLDERS=("kitty" "qtile" "dunst" "hypr" "fastfetch" "nvim" "rofi" "waybar" "thefuck" "wlogout")
 
 # copy from .config
 for FOLDER in "${FOLDERS[@]}"; do
