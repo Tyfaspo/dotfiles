@@ -1,30 +1,30 @@
 * {
-  background-image: none;
+	background-image: none;
 }
 
 window {
-  background-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0);
 }
 
 button {
-  color: #eddbb2;
-  font-family: "monospace";
-  background-color: #242424;
+	color: #eddbb2;
+	font-family: "monospace";
+	background-color: #242424;
 
-  border-radius: 10px 0px 0px 0px;
-  border-style: none;
-  border-width: 0px;
+	border-radius: 10px 0px 0px 0px;
+	border-style: none;
+	border-width: 0px;
 
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 25%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
 }
 
 button:focus,
 button:active,
 button:hover {
-  background-color: #7AA2F7;
-  outline-style: solid;
+	background-color: #7AA2F7;
+	outline-style: solid;
 }
 
 #locak,
@@ -33,29 +33,29 @@ button:hover {
 #hibernate,
 #shutdown,
 #reboot {
-  opacity: 0.9;
+	opacity: 0.9;
 }
 
 #lock {
-  background-image: image(url("/home/tyfaspo/Downloads/lock.svg"), url("/usr/local/share/wlogout/icons/lock.png"));
+	background-image: image(url("./lock.svg"), url("/usr/local/share/wlogout/icons/lock.png"));
 }
 
 #logout {
-  background-image: image(url("/home/tyfaspo/Downloads/exit.svg"), url("/usr/local/share/wlogout/icons/logout.png"));
+	background-image: image(url("./exit.svg"), url("/usr/local/share/wlogout/icons/logout.png"));
 }
 
 #suspend {
-  background-image: image(url("/home/tyfaspo/Downloads/moon.svg"), url("/usr/local/share/wlogout/icons/suspend.png"));
+	background-image: image(url("./moon.svg"), url("/usr/local/share/wlogout/icons/suspend.png"));
 }
 
 #hibernate {
-  background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
+	background-image: image(url("./hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
 }
 
 #shutdown {
-  background-image: image(url("/home/tyfaspo/Downloads/power.svg"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+	background-image: image(url("./power.svg"), url("/usr/local/share/wlogout/icons/shutdown.png"));
 }
 
 #reboot {
-  background-image: image(url("/home/tyfaspo/Downloads/rotate-right.svg"), url("/usr/local/share/wlogout/icons/reboot.png"));
+	background-image: image(url("./rotate-right.svg"), url("/usr/local/share/wlogout/icons/reboot.png"));
 }
