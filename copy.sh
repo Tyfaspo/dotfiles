@@ -10,7 +10,10 @@ fi
 
 test_() {
 		PARAL_D=$(cat /etc/pacman.conf | grep Paral)
-		echo $PARAL_D
+		if [[ "$PARAL_D" == \#* ]]; then
+			echo "You have parallel downloads disabled. For your convinience enable it before running script."
+			exit 0
+		fi
 }
 
 copy_local_to_dotfiles() {
@@ -40,7 +43,7 @@ install_dotfiles() {
     echo "Installing dotfiles..."
 		echo "Do you have yay installed? (y/n)"
 		read user_input
-		if [ user_input = "y" ]; then
+		if [ "$user_input" == "y" ]; then
 			echo "Skipping yay installation."
 		else
 			echo "Installing yay."
@@ -60,7 +63,7 @@ elif [[ "$1" == "--install" ]]; then
 elif [[ "$1" == "--test" ]]; then
 		test_
 else
-    echo "Usage: $0 [--sync-with-local | --install]"
+    echo "Usage: $0 [--sync-with-local | --install | --test]"
     exit 1
 fi
 
