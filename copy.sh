@@ -8,6 +8,11 @@ if [ "$USER" = "root" ]; then
   exit 0
 fi
 
+test_() {
+		PARAL_D=$(cat /etc/pacman.conf | grep Paral)
+		echo $PARAL_D
+}
+
 copy_local_to_dotfiles() {
     echo "Copying local configuration to dotfiles..."
 
@@ -33,12 +38,27 @@ copy_local_to_dotfiles() {
 
 install_dotfiles() {
     echo "Installing dotfiles..."
+		echo "Do you have yay installed? (y/n)"
+		read user_input
+		if [ user_input = "y" ]; then
+			echo "Skipping yay installation."
+		else
+			echo "Installing yay."
+			git clone "https://aur.archlinux.org/yay.git" "/home/$USER/yay" && cd "/home/$USER/yay"
+		fi
+		echo "Installing packages."
+		yay -S --needed - < packages
+
+		echo "Enabling sddm."
+		sudo systemctl enable "sddm.service"
 }
 
 if [[ "$1" == "--sync-with-local" ]]; then
     copy_local_to_dotfiles
 elif [[ "$1" == "--install" ]]; then
     install_dotfiles
+elif [[ "$1" == "--test" ]]; then
+		test_
 else
     echo "Usage: $0 [--sync-with-local | --install]"
     exit 1
