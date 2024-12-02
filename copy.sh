@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/bash
+CURRENT_DIR=$(pwd)
 USER=$(whoami)
 CONFIG="/home/$USER/.config"
 FOLDERS=("kitty" "qtile" "dunst" "hypr" "fastfetch" "nvim" "rofi" "waybar" "thefuck" "wlogout")
@@ -43,11 +44,13 @@ install_dotfiles() {
     echo "Installing dotfiles..."
 		echo "Do you have yay installed? (y/n)"
 		read user_input
-		if [ "$user_input" == "y" ]; then
+		if [[ "$user_input" == "y" ]]; then
 			echo "Skipping yay installation."
-		else
+		elif [[ "$user_input" == "n" ]]; then
 			echo "Installing yay."
 			git clone "https://aur.archlinux.org/yay.git" "/home/$USER/yay" && cd "/home/$USER/yay"
+			makepkg -si
+			cd $CURRENT_DIR && rm -rf "/home/$USER/yay"
 		fi
 		echo "Installing packages."
 		yay -S --needed - < packages
