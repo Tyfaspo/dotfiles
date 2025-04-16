@@ -9,7 +9,6 @@ bluez-utils
 brightnessctl
 btop
 clipnotify
-dunst
 grim
 gtk-engine-murrine
 hyprland
@@ -45,10 +44,10 @@ waybar
 wev
 wget
 wl-clipboard
-wlogout
 xclip
 yay
 zoxide
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
+hyprpanel

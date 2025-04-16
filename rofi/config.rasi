@@ -16,6 +16,7 @@ configuration {
 
 /* ---- Load pywal colors ---- ???*/ 
 @theme "~/.config/rofi/gruvbox-material.rasi"
+@theme "~/.cache/wal/colors-rofi-dark.rasi"
 
 /* ---- Global Properties ---- */
 * {

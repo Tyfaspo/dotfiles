@@ -13,6 +13,9 @@ mkdir -p "$WALLPAPER_DIR"
 INTERVAL=600
 
 while true; do
+	if pgrep -x osu.AppImage > /dev/null; then
+    echo "Running"
+	else
 	find "$1" -type f -iname '*.png' \
 		| while read -r img; do
 			echo "$((RANDOM % 1000)):$img"
@@ -21,7 +24,8 @@ while true; do
 		| while read -r img; do
 			cp "$img" "$WALLPAPER_DIR/current.png"
 			cp "$img" "/home/tyfaspo/.mozilla/firefox/ivuilrut.default-release/chrome/wallpaper.png" #get your mozilla profile folder
-			swww img "$WALLPAPER_DIR/current.png"
+			hyprpanel sw "$WALLPAPER_DIR/current.png"
 			sleep $INTERVAL
 		done
+	fi
 done

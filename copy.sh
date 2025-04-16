@@ -2,7 +2,7 @@
 CURRENT_DIR=$(pwd)
 USER=$(whoami)
 CONFIG="/home/$USER/.config"
-FOLDERS=("kitty" "qtile" "dunst" "hypr" "fastfetch" "nvim" "rofi" "waybar" "thefuck" "wlogout")
+FOLDERS=("alacritty" "hypr" "fastfetch" "nvim" "rofi" "waybar" "thefuck" "hyprpanel")
 
 if [ "$USER" = "root" ]; then
   echo "do not run as root"
@@ -50,7 +50,7 @@ install_dotfiles() {
 			echo "Installing yay."
 			git clone "https://aur.archlinux.org/yay.git" "/home/$USER/yay" && cd "/home/$USER/yay"
 			makepkg -si
-			cd $CURRENT_DIR && rm -rf "/home/$USER/yay"
+			cd $CURRENT_DIR && rm -r "/home/$USER/yay"
 		fi
 		echo "Installing packages."
 		yay -S --needed - < packages

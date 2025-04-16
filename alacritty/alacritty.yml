@@ -1,0 +1,34 @@
+# Gruvbox color scheme for Alacritty
+colors:
+  primary:
+    background: '0x282828'  # Dark background
+    foreground: '0xebdbb2'  # Light text
+
+  normal:
+    black:   '0x282828'  # Darker background
+    red:     '0xcc241d'  # Red
+    green:   '0x98971a'  # Green
+    yellow:  '0xd79921'  # Yellow
+    blue:    '0x458588'  # Blue
+    magenta: '0xb16286'  # Magenta
+    cyan:    '0x689d6a'  # Cyan
+    white:   '0xa89984'  # Light grey
+
+  bright:
+    black:   '0x928374'  # Grey
+    red:     '0xfb4934'  # Bright red
+    green:   '0xb8bb26'  # Bright green
+    yellow:  '0xfabd2f'  # Bright yellow
+    blue:    '0x83a598'  # Bright blue
+    magenta: '0xd3869b'  # Bright magenta
+    cyan:    '0x8ec07c'  # Bright cyan
+    white:   '0xebdbb2'  # White
+
+  cursor:
+    text: '0x282828'      # Cursor text color
+    cursor: '0xebdbb2'    # Cursor color
+
+  selection:
+    text: '0x282828'      # Selected text
+    background: '0xebdbb2' # Selection background
+

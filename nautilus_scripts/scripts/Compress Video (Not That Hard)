@@ -2,6 +2,7 @@
 
 # Check if an input file is provided
 if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <input_video>"
     notify-send "FFmpeg Compression" "Usage: $0 <input_video>"
     exit 1
 fi
@@ -9,29 +10,23 @@ fi
 INPUT_FILE="$1"
 OUTPUT_FILE="${INPUT_FILE%.*}_compressed.mp4"
 
-# Start compression notification
+# Start compression
 notify-send "FFmpeg Compression" "Compression started for: $INPUT_FILE"
 
-# Run FFmpeg and capture errors
-ERROR_LOG=$(mktemp)
 ffmpeg -i "$INPUT_FILE" \
-       -c:v h264_nvenc \
-       -preset slow \
-       -b:v 2M \
        -vf "scale=1280:-2" \
-       -r 30 \
+       -preset veryslow \
+       -crf 24 \
+       -maxrate 1000k \
+       -bufsize 2000k \
        -c:a aac -b:a 96k \
        -movflags +faststart \
-       "$OUTPUT_FILE" 2> "$ERROR_LOG"
+       "$OUTPUT_FILE"
 
-# Check if FFmpeg succeeded
+# Check if the command succeeded
 if [ $? -eq 0 ]; then
     notify-send "FFmpeg Compression" "Compression completed successfully! Saved as $OUTPUT_FILE"
 else
-    ERROR_MESSAGE=$(tail -n 5 "$ERROR_LOG")
-    notify-send "FFmpeg Compression" "Compression failed! Error: $ERROR_MESSAGE"
+    notify-send "FFmpeg Compression" "Compression failed for: $INPUT_FILE"
 fi
-
-# Clean up
-rm -f "$ERROR_LOG"
 
