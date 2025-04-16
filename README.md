@@ -3,23 +3,23 @@ Absolutely no docs whatsoever, a lot of stuff is hardcoded
 gl if you are willing to use my configs ;P
 
 ## Hardware: 
-- Device: Lenovo laptop 
-- CPU: Ryzen 3 5300U APU
-- RAM: 8Gb
-- GPU: Lucienne
+- Device: Lenovo Yoga Pro 7
+- CPU: Ryzen 7 8845HS
+- RAM: 16Gb
+- iGPU: Radeon 780M
+- dGPU: RTX 3050 Mobile
 
 ## Software:
 - OS: Arch
 - Kernel: linux
-- WM: Hyprland, Qtile
+- WM: Hyprland
 - Shell: zsh with oh-my-zsh
-- Terminal: Kitty
+- Terminal: Alacritty
 - AUR Helper: yay
 - fetch script: fastfetch
-- Media player: GWEN/MPV
+- Media player: MPV
 - Messengers: Vesktop/Telegram
 - Text editors: nvim
-- Qtile specific: arandr, picom
 - Lock screen: Hyprlock
 
 ## Checklist
@@ -28,9 +28,9 @@ gl if you are willing to use my configs ;P
 -[] Unhardcoded stuff
 -[] Modularize hyprland.conf
 -[] Docs
--[] install.sh script 
+-[x] install.sh script 
 -[x] GTK theming
--[] Move from Waybar to AGS
+-[x] Move from Waybar to Hyprpanel
 -[x] Gruvbox theme for every applications
 
 Install: font-awesome, ttf-hack-nerd, (Breeze Cursor)[https://github.com/ful1e5/BreezeX_Cursor?tab=readme-ov-file], (grimblast)[https://github.com/hyprwm/contrib/tree/main/grimblast], swappy
